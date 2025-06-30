@@ -1,0 +1,17 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+Confirm Delete 
+{% endblock title %}
+
+
+{% block content %}
+<h2 style="border: solid 3px; text-align: center;">Confirm Delete </h2>
+<div>Are you sure you want to delete ?</div>
+<form action="{% url 'book_review:delete_book' review.pk %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes I'm sure</button>
+</form>
+<a href="{% url 'book_review:book_detail' review.pk %}">No, take me back</a>
+
+{% endblock content %}

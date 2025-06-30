@@ -1,0 +1,41 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+<h1>{{ book.title }}</h1>
+<p><strong>Author:</strong> {{ book.author }}</p>
+<p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+
+<h2>Reviews</h2>
+{% for review in reviews %}
+  <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+    <strong>{{ review.reviewer_name }}</strong> - Rated: {{ review.rating }}/5<br>
+    <em>{{ review.created_at|date:"M d, Y H:i" }}</em><br>
+    <p>{{ review.comment }}</p>
+    <a href="{% url 'book_review:update_review' book.pk %}">Update</a>
+    <a href="{% url 'book_review:confirm_delete' book.pk %}">Delete</a>
+  </div>
+{% empty %}
+  <p>No reviews yet.</p>
+{% endfor %}
+
+
+<h2>Submit a Review</h2>
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label>Your Name:</label><br>
+    {{ form.reviewer_name }}
+    {% if form.reviewer_name.errors %}<p style="color: red;">{{ form.reviewer_name.errors.0 }}</p>{% endif %}
+  </div>
+  <div>
+    <label>Rating (1-5):</label><br>
+    {{ form.rating }}
+    {% if form.rating.errors %}<p style="color: red;">{{ form.rating.errors.0 }}</p>{% endif %}
+  </div>
+  <div>
+    <label>Comment:</label><br>
+    {{ form.comment }}
+    {% if form.comment.errors %}<p style="color: red;">{{ form.comment.errors.0 }}</p>{% endif %}
+  </div>
+  <button type="submit">Submit Review</button>
+</form>
+{% endblock %}

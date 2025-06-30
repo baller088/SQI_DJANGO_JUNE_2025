@@ -1,0 +1,50 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+Add Album
+{% endblock title %}
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<div>
+    <input type="text" name="name" value="{{ form.name.value|default_if_none:'' }}" required>
+    {% if form.name.errors %}
+    <ul>
+    {% for error in form.name.errors %}
+    <li>{{ error }}</li>
+    
+    {% endfor %}
+    </ul>
+    {% endif %}
+    
+    </div>
+    <br>
+<div>
+    <input type="number" name="debut_year" value="{{ form.debut_year.value|default_if_none:'' }}" required>
+    {% if form.debut_year.errors %}
+    <ul>
+    {% for error in form.debut_year.errors %}
+    <li>{{ error }}</li>
+    
+    {% endfor %}   
+    </ul> 
+    {% endif %}
+    
+    </div>
+    <br>
+<div>
+    <input type="file" name="image" value="{{ form.image.value|default_if_none:'' }}" required  >
+    {% if form.image.errors %}
+    <ul>
+    {% for error in form.image.errors %}
+    <li>{{ error }}</li>
+    </ul>
+     {% endfor %}
+     {% endif %} 
+    </div>
+    <br>
+    <button type = "submit">Add Album</button>
+</form>
+
+ {% endblock content %} 

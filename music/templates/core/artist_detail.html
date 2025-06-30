@@ -1,0 +1,27 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+Artists Page
+{% endblock title %}
+
+{% block content %}
+<h3>All Artists</h3>
+
+<ul>
+{% if artist.image %}
+    <img src="{{ artist.image.url }}" alt="{{ artist }} image" width="300" height="300">
+{% else %}
+    <p>No image</p>
+{% endif %}
+    <li>{{ artist }}</li>
+    <p>Debut Year: {{ artist.debut_year }}</p>
+        Albums by {{ artist }}
+        <ul>
+        {% for album in artist.albums.all %}
+            <li>{{ album.title }}</li>
+        {% endfor %}
+        </ul>
+
+</ul>
+
+{% endblock content %}

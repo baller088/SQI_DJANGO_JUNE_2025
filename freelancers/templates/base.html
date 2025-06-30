@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>{% block title %}freelancers{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+        <a href="{% url 'freelancers:services' %}">services</a>
+        <a href="{% url 'freelancers:testimonials' %}">testimonials</a>
+        <a href="{% url 'freelancers:case_studies' %}">case_studies</a>
+        <a href="{% url 'freelancers:blog' %}">blog</a>
+        <a href="{% url 'freelancers:pricing' %}">pricing</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock  %}
+    </main>
+</body>
+</html>

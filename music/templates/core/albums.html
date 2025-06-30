@@ -1,0 +1,19 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+Albums Page
+{% endblock title %}
+
+{% block content %}
+<h3>All albums</h3>
+
+<ul>
+{% for album in albums %}
+ <img src="{{ album.image.url }}" alt="{{ album }} image" width="300" height="300">
+    <li><a href="{% url 'core:album_detail' album.pk %}">{{ album.name }}</a></li>
+    <li>{{ album.title }} by {{ album.artist }}</li>
+
+{% endfor %}
+</ul>
+
+{% endblock content %}

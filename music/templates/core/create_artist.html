@@ -1,0 +1,42 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+Add Artist
+{% endblock title %}
+
+{% block content %}
+<h3>Add Artist</h3>
+
+{% comment %} <ul>
+{% for artist in artists %}
+    <img src="{{ artist.image.url }}" alt="{{ artist }} image" width="300" height="300">
+    <li><a href="{% url 'core:artist_detail' artist.pk %}">{{ artist }}</a></li>
+    <p>Debut Year: {{ artist.debut_year }}</p>
+        Albums by {{ artist }}
+        <ul>
+        {% for album in artist.albums.all %}
+            <li>{{ album.title }}</li>
+        {% endfor %}
+        </ul>
+
+{% endfor %}
+</ul> {% endcomment %}
+
+
+<form enctype="multipart/form-data" action="{% url 'core:create_artist' %}" method="POST">Add commentMore actions
+    {% csrf_token %}
+    {{ create_artist_form.as_p }}
+    <button type="submit">Add artist</button>
+</form>
+
+
+{% endblock content %}
+
+
+{% block extra_content %}
+<p>Hello</p>
+{% endblock extra_content %}
+
+{% block extra_css %}
+{% comment %} <link rel="stylesheet" href="{% static 'css/authors.css' %}"> {% endcomment %}
+{% endblock extra_css %}

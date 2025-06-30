@@ -1,0 +1,9 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+<h1>Book List</h1>
+<ul>
+  {% for book in books %}
+    <li><a href="{% url 'book_review:book_detail' book.pk %}">{{ book.title }} by {{ book.author }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+  <h2>All Recipes</h2>
+  <ul>
+    {% for recipe in recipes %}
+      <li>{{ recipe.name }} – {{ recipe.cooking_time }} mins</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
